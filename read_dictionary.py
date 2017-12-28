@@ -12,8 +12,15 @@ import sys # for file access
 dictionary_file= 'top_1000_english_words.txt'
 
 # read the dictionary file:
+# sort dictionary words into length
 with open(dictionary_file,'r') as FILE:
 	words= [ word.rstrip() for word in FILE]
+	wordsLen= [ len(word) for word in words]
 	
 print(words[0:10])
+print(wordsLen[0:10])
+
+# get max word length
+maxWordLen= max(wordsLen)
+
 
