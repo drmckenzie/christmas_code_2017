@@ -26,3 +26,8 @@ print(strWordsearch[5])
 print("No. Lines = " + str(nLines))
 print("No. rows = " + str(nRows))
 
+for iRow in range(1,nLines):
+	print(str(iRow) + " = " + strWordsearch[iRow])
+	for iCol in range(1,nRows):
+		print("row=" + str(iRow) + " col=" + str(iCol) + ". Char=" + strWordsearch[iRow][iCol])
+

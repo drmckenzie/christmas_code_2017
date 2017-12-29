@@ -22,5 +22,6 @@ print(wordsLen[0:10])
 
 # get max word length
 maxWordLen= max(wordsLen)
+print("max word length = " + str(maxWordLen))
 
 
