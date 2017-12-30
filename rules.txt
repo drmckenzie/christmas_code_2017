@@ -1,0 +1,25 @@
+>>> xxx 18/12/2017 13:45 >>>
+Chaps,
+
+A number of you will remember that we have run a coding challenge for fun at Christmas in the last few years.  Some people have submitted solutions to this many have ignored it, please feel welcome to have a go, but under no obligation to do so (there's no booking code!)
+
+In previous years we've found that people quite like challenges that are pretty short and allow an entry in any language.
+
+For 2017 the coding challenge is a word search:
+
+The example given is shown such that it is easy to see the words you are looking for.
+
+We are doing an agile Challenge. If people find it easy to find the starting points of the words I will make a second word search of a larger size, a different shape, but with the same words in it. However, the second search will have the dots replaced with other letters, and will be blind test.
+
+Here are the rules that you may or may not follow:
+
+1. Code to be ready in first week of next year.
+2. Your code should take in the word search in the format of the text file attached and should write out a text file that has a list with the following columns of data in it:
+        -  Word
+        -  Row of the first letter
+        -  Column of the first letter
+3. Any language can be used.
+4. Points awarded for code that is easy to read.
+5. The second word search will be big so think about how to make your search efficient.
+6. Extra points if you spot Christmas words in the second word search not in the example problem (i.e. ones I haven't thought of yet)!
+
