@@ -18,15 +18,15 @@ def generate_word_arrays(t):
 	for j in range(l):
 		for i in range(l):
 			if i>=j:
-				print(j*' '+t[j:i+1])
+				#print(j*' '+t[j:i+1])
 				strOutput.append(t[j:i+1])
 	#
 	# now make sure it's unique:
 	strOutputUnique = list(set(strOutput))
-	print("Unique list, unsorted")
-	print(strOutputUnique)
+	#print("Unique list, unsorted")
+	#print(strOutputUnique)
 	strOutputUnique.sort()
-	print("Unique list, sorted")
-	print(strOutputUnique)
+	#print("Unique list, sorted")
+	#print(strOutputUnique)
 	
 	return strOutputUnique
