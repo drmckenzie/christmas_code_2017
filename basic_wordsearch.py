@@ -3,12 +3,14 @@
 # do the imports
 import sys # for file access
 import my_split # for splitting strings by multiple delimiters
+import generate_word_arrays # for generating lists of words from a line.
 
 # my_split notes:
 # print(my_split.my_split('1111  2222 3333;4444,5555;6666', [' ', ';', ',']))
 
 # specify wordsearch file:
 wordsearch_file= 'wordsearch_test_1.txt'
+wordsearch_file= 'wordsearch_test_2.txt'
 
 # specify delimiters
 multipleDelimiters= [' ', ';', ',', '.', '-', '=', '<', '>', '*', '/', '\\', '_', '[', ']']
@@ -33,7 +35,7 @@ print(strWordsearch[5])
 print("No. Lines = " + str(nLines))
 print("No. rows = " + str(nRows))
 
-for iRow in range(1,nLines):
+for iRow in range(0,nLines):
 	print(str(iRow) + " = " + strWordsearch[iRow])
 #	for iCol in range(1,nRows):
 #		print("row=" + str(iRow) + " col=" + str(iCol) + ". Char=" + strWordsearch[iRow][iCol])
@@ -42,6 +44,15 @@ for iRow in range(1,nLines):
 print(my_split.my_split('1111  2222 3333;.4444,5555;6666', multipleDelimiters))
 print(my_split.my_split('.....G...', multipleDelimiters))
 
-for iRow in range(1,nLines):
-	print(str(iRow) + " = " + "%s",my_split.my_split(strWordsearch[iRow],multipleDelimiters))
+for iRow in range(0,nLines):
+	print(str(iRow) + " =",my_split.my_split(strWordsearch[iRow],multipleDelimiters))
 
+# now generate a list of potential words to search the dictionary:
+listOfStringsThatMightBeWords= []
+for iRow in range(0,nLines):
+	candidates = generate_word_arrays.generate_word_arrays(strWordsearch[iRow])
+	for words in candidates:
+		listOfStringsThatMightBeWords.append(words)
+
+print(listOfStringsThatMightBeWords[0:5])
+print("Length of candidates list = " + str(len(listOfStringsThatMightBeWords)))
