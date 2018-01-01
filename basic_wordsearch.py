@@ -79,10 +79,20 @@ for iRow in range(0,nCols):
 	candidates = generate_word_arrays.generate_word_arrays(strWordsearchTrans[iRow])
 	for words in candidates:
 		listOfStringsThatMightBeWords.append(words)		
-		
+
+# Now add every string, but backwards (double the word list) 
+for iWord in range(0,len(listOfStringsThatMightBeWords)):
+	thisWord = listOfStringsThatMightBeWords[iWord]
+	# print(thisWord + " " + thisWord[::-1])
+	listOfStringsThatMightBeWords.append(thisWord[::-1])
+
+# make sure it's unique:
+listOfStringsThatMightBeWords = list(set(listOfStringsThatMightBeWords))	
+
+# debug
 print(listOfStringsThatMightBeWords[0:100])
 print("Length of candidates list = " + str(len(listOfStringsThatMightBeWords)))
-
+	
 ## now for looking up the dictionary.
 
 # import the dictionary as a list:
@@ -98,4 +108,4 @@ for word in wordsDictionary:
 print("" + str(len(wordsFound)) +  " words found:")
 print(wordsFound)
 
-print("Now do the same for backwards (then figure out diagonals)")
+print("(then figure out diagonals)")
