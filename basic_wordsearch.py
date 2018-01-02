@@ -13,10 +13,12 @@ import generate_diagonal_list # the diagonals.
 wordsearch_file= 'wordsearch_test_1.txt'
 wordsearch_file= 'wordsearch_test_2.txt'
 #wordsearch_file= 'wordsearch_test_3.txt'
+wordsearch_file= 'wordsearch_test_4.txt'
 
 # specify dictionary file:
 dictionary_file= 'top_1000_english_words.txt'
 dictionary_file= 'small.txt'
+dictionary_file= '..\english-words\words_alpha.txt'
 
 # specify delimiters
 multipleDelimiters= [' ', ';', ',', '.', '-', '=', '<', '>', '*', '/', '\\', '_', '[', ']']
@@ -124,10 +126,39 @@ with open(dictionary_file,'r') as DICTFILE:
 	wordsDictionaryLen= [ len(word) for word in words]
 
 wordsFound= []
-for word in wordsDictionary:
-	if word in listOfStringsThatMightBeWords:
-		wordsFound.append(word)
 
+# slow lookup:
+#for word in wordsDictionary:
+#	if word in listOfStringsThatMightBeWords:
+#		wordsFound.append(word)
+
+# faster lookup:
+for word in listOfStringsThatMightBeWords:
+	if word in wordsDictionary:
+		wordsFound.append(word)
+		
 print("" + str(len(wordsFound)) +  " words found:")
 print(wordsFound)
 
+# write to file:
+f=open('output.txt','w')
+for word in wordsFound:
+    f.write(word+'\n')
+f.close()
+
+# sort by length:
+wordsFoundByLength= wordsFound
+wordsFoundByLength.sort(key=len)
+longestWord = wordsFoundByLength[len(wordsFoundByLength)-1]
+print("words found, sorted by length. Longest = " + longestWord + ", with " + str(len(longestWord)) + " letters")
+
+print("list of words by length:")
+print(wordsFoundByLength)
+
+# write to file:
+f=open('output_by_length.txt','w')
+for word in wordsFoundByLength:
+    f.write(word+'\n')
+f.close()
+
+print("Wrote the words to file 'output.txt', 'output_by_length.txt'")
