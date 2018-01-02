@@ -5,6 +5,9 @@ import sys # for file access
 import my_split # for splitting strings by multiple delimiters
 import generate_word_arrays # for generating lists of words from a line.
 import generate_diagonal_list # the diagonals.
+import os
+#sys.path.append('../english-words')
+import read_english_dictionary	
 
 # my_split notes:
 # print(my_split.my_split('1111  2222 3333;4444,5555;6666', [' ', ';', ',']))
@@ -136,11 +139,7 @@ wordsFound= []
 #	if word in wordsDictionary:
 #		wordsFound.append(word)
 		
-# even faster lookup?
-import json
-import os
-#sys.path.append('../english-words')
-import read_english_dictionary	
+# even faster lookup
 wordsDictionary = read_english_dictionary.load_words()
 # print(wordsDictionary["test"])
 for word in listOfStringsThatMightBeWords:
