@@ -3,6 +3,8 @@
 if __name__ == '__main__':
 	# scraping the input
 	generate_diagonal_list(t)
+	print("This appears to work for the square case.")
+	print("You know, this could just be hacked so that the rectangular matrix is padded with whitespace, then trimmed at the end...")
 
 def generate_diagonal_list(t):
 	# start from 1,1 and iterate until we have max row or max col
@@ -14,9 +16,38 @@ def generate_diagonal_list(t):
 	# 2,5 3,4 4,3
 	# 3,6 4,7
 	# 4,8
-	maxRow= 4
-	maxCol= 4
 	
+	# get max row & col lengths:
+	maxRow= len(t)
+	maxCol= len(t[0])
+	print("maxRow ="+str(maxRow))
+	print("maxCol ="+str(maxCol)) 
+	
+	maxBoth= max(maxRow,maxCol)
+	
+	# make it square (bodge. Mainly because it doesn't work in rectangular mode yet.)
+	for iRow in range(0,maxBoth):
+		print(t[iRow])
+		if iRow>(maxRow-1):
+			t.append(maxBoth*' ')
+			print("row appended")
+		for iCol in range(0,maxBoth):
+			if iCol>(maxCol-1):
+				print("col appended")
+				tempString = t[iRow] + " "
+				t[iRow]= tempString
+				#print(t[iRow][iCol])
+
+	for iRow in range(0,maxBoth):
+		print("."+t[iRow]+".")
+				
+	# get new maximums
+	maxRow= len(t)
+	maxCol= len(t[0])
+	print("maxRow ="+str(maxRow))
+	print("maxCol ="+str(maxCol)) 
+	
+	# number of iterations
 	noIterations = maxRow + maxCol - 1
 	
 	thisIter= 0
