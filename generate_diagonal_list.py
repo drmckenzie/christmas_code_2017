@@ -23,9 +23,10 @@ def generate_diagonal_list(t):
 	print("maxRow ="+str(maxRow))
 	print("maxCol ="+str(maxCol)) 
 	
+	# make it square 
+	# NOTE: this is a bodge. Mainly because it doesn't work in rectangular mode yet. There's a row that gets counted twice, and I can't figure out where in the code it is. 
+	#todo 
 	maxBoth= max(maxRow,maxCol)
-	
-	# make it square (bodge. Mainly because it doesn't work in rectangular mode yet.)
 	for iRow in range(0,maxBoth):
 		print(t[iRow])
 		if iRow>(maxRow-1):
@@ -53,6 +54,7 @@ def generate_diagonal_list(t):
 	thisIter= 0
 	thisRow= 0
 	thisCol= 0
+	allDiagStrings= []
 	while thisIter < noIterations:
 		if (thisRow<maxRow):
 			thisRow= thisIter
@@ -64,17 +66,26 @@ def generate_diagonal_list(t):
 		print("col ="+str(thisCol))
 		
 		thisCol= 0
+		thisDiagonalString= []
 		while (thisRow>-1) and (thisCol>-1) and (thisCol<maxCol):
 			if (thisRow>=maxRow):
 				thisRow= maxRow-1
 				thisCol= thisIter -maxCol+1
 
 			print("R" + str(thisRow) + " C" + str(thisCol) )
+			thisDiagonalString.append(t[thisRow][thisCol])
+			
 			thisRow= thisRow - 1
 			thisCol= thisCol + 1
-
 			
+		allDiagStrings.append(''.join(thisDiagonalString).strip())
+		
 		thisIter += 1
-		
-
-		
+	
+	# delete the end empty string (if exists)
+	if allDiagStrings[len(allDiagStrings)-1]=='':
+		allDiagStrings= allDiagStrings[0:(len(allDiagStrings)-1)]
+	
+	print(allDiagStrings)
+	return allDiagStrings	
+	
