@@ -4,6 +4,7 @@
 import sys # for file access
 import my_split # for splitting strings by multiple delimiters
 import generate_word_arrays # for generating lists of words from a line.
+import generate_diagonal_list # the diagonals.
 
 # my_split notes:
 # print(my_split.my_split('1111  2222 3333;4444,5555;6666', [' ', ';', ',']))
@@ -11,7 +12,7 @@ import generate_word_arrays # for generating lists of words from a line.
 # specify wordsearch file:
 wordsearch_file= 'wordsearch_test_1.txt'
 wordsearch_file= 'wordsearch_test_2.txt'
-wordsearch_file= 'wordsearch_test_3.txt'
+#wordsearch_file= 'wordsearch_test_3.txt'
 
 # specify dictionary file:
 dictionary_file= 'top_1000_english_words.txt'
@@ -35,6 +36,7 @@ for line in iter(f):
 			
 f.close()
 
+# make a transposed array. First, make a dummy array. (there is probably an easier way)
 strWordsearchTrans= ["x"  for x in range(nCols)]
 print(len(strWordsearchTrans[0]))
 for iRow in range(0, nCols):
@@ -49,6 +51,11 @@ for iRow in range(0,nCols):
 		tempstr.append(strWordsearch[iCol][iRow])
 	strWordsearchTrans[iRow]= ''.join(tempstr) 
 	# print(strWordsearchTrans[iRow])
+
+# reverse the array
+strWordsearchReversed= []
+for iRow in range(0,nLines):
+	strWordsearchReversed.append(strWordsearch[iRow][::-1])
 	
 # wait = input("PRESS ENTER TO CONTINUE.")
 
@@ -78,7 +85,21 @@ for iRow in range(0,nLines):
 for iRow in range(0,nCols):
 	candidates = generate_word_arrays.generate_word_arrays(strWordsearchTrans[iRow])
 	for words in candidates:
-		listOfStringsThatMightBeWords.append(words)		
+		listOfStringsThatMightBeWords.append(words)	
+
+# now add the diagonals. First with the normal wordsearch:
+diagonalFrontWords = generate_diagonal_list.generate_diagonal_list(strWordsearch)
+for iWord in range(0,len(diagonalFrontWords)):
+	listOfStringsThatMightBeWords.append(diagonalFrontWords[iWord])		
+print("Diagonal front words")
+print(diagonalFrontWords)
+
+# and now with the reversed grid:
+diagonalReversedWords = generate_diagonal_list.generate_diagonal_list(strWordsearchReversed)
+for iWord in range(0,len(diagonalReversedWords)):
+	listOfStringsThatMightBeWords.append(diagonalReversedWords[iWord])		
+print("Diagonal reversed words")
+print(diagonalReversedWords)
 
 # Now add every string, but backwards (double the word list) 
 for iWord in range(0,len(listOfStringsThatMightBeWords)):
@@ -86,6 +107,8 @@ for iWord in range(0,len(listOfStringsThatMightBeWords)):
 	# print(thisWord + " " + thisWord[::-1])
 	listOfStringsThatMightBeWords.append(thisWord[::-1])
 
+# print(listOfStringsThatMightBeWords)
+	
 # make sure it's unique:
 listOfStringsThatMightBeWords = list(set(listOfStringsThatMightBeWords))	
 
@@ -108,4 +131,3 @@ for word in wordsDictionary:
 print("" + str(len(wordsFound)) +  " words found:")
 print(wordsFound)
 
-print("(then figure out diagonals)")

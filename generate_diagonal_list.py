@@ -20,33 +20,33 @@ def generate_diagonal_list(t):
 	# get max row & col lengths:
 	maxRow= len(t)
 	maxCol= len(t[0])
-	print("maxRow ="+str(maxRow))
-	print("maxCol ="+str(maxCol)) 
+	#print("maxRow ="+str(maxRow))
+	#print("maxCol ="+str(maxCol)) 
 	
 	# make it square 
 	# NOTE: this is a bodge. Mainly because it doesn't work in rectangular mode yet. There's a row that gets counted twice, and I can't figure out where in the code it is. 
 	#todo 
 	maxBoth= max(maxRow,maxCol)
 	for iRow in range(0,maxBoth):
-		print(t[iRow])
+		#print(t[iRow])
 		if iRow>(maxRow-1):
 			t.append(maxBoth*' ')
-			print("row appended")
+			#print("row appended")
 		for iCol in range(0,maxBoth):
 			if iCol>(maxCol-1):
-				print("col appended")
+				#print("col appended")
 				tempString = t[iRow] + " "
 				t[iRow]= tempString
 				#print(t[iRow][iCol])
 
-	for iRow in range(0,maxBoth):
-		print("."+t[iRow]+".")
+	#for iRow in range(0,maxBoth):
+	#	print("."+t[iRow]+".")
 				
 	# get new maximums
 	maxRow= len(t)
 	maxCol= len(t[0])
-	print("maxRow ="+str(maxRow))
-	print("maxCol ="+str(maxCol)) 
+	#print("maxRow ="+str(maxRow))
+	#print("maxCol ="+str(maxCol)) 
 	
 	# number of iterations
 	noIterations = maxRow + maxCol - 1
@@ -61,9 +61,9 @@ def generate_diagonal_list(t):
 		else:
 			thisRow= maxRow
 
-		print("iter="+str(thisIter))
-		print("row ="+str(thisRow))
-		print("col ="+str(thisCol))
+		#print("iter="+str(thisIter))
+		#print("row ="+str(thisRow))
+		#print("col ="+str(thisCol))
 		
 		thisCol= 0
 		thisDiagonalString= []
@@ -72,7 +72,7 @@ def generate_diagonal_list(t):
 				thisRow= maxRow-1
 				thisCol= thisIter -maxCol+1
 
-			print("R" + str(thisRow) + " C" + str(thisCol) )
+			#print("R" + str(thisRow) + " C" + str(thisCol) )
 			thisDiagonalString.append(t[thisRow][thisCol])
 			
 			thisRow= thisRow - 1
@@ -83,9 +83,9 @@ def generate_diagonal_list(t):
 		thisIter += 1
 	
 	# delete the end empty string (if exists)
-	if allDiagStrings[len(allDiagStrings)-1]=='':
+	while allDiagStrings[len(allDiagStrings)-1]=='':
 		allDiagStrings= allDiagStrings[0:(len(allDiagStrings)-1)]
 	
-	print(allDiagStrings)
+	#print(allDiagStrings)
 	return allDiagStrings	
 	
