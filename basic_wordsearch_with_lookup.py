@@ -59,6 +59,11 @@ strWordsearchReversed= []
 for iRow in range(0,nLines):
 	strWordsearchReversed.append(strWordsearch[iRow][::-1])
 	
+# reverse the transposed array
+strWordsearchTransposeReversed= []
+for iRow in range(0,nLines):
+	strWordsearchTransposeReversed.append(strWordsearchTrans[iRow][::-1])
+
 # wait = input("PRESS ENTER TO CONTINUE.")
 
 # debug - these should be the same letter
@@ -162,3 +167,114 @@ for word in wordsFoundByLength:
 f.close()
 
 print("Wrote the words to file 'output_by_alphabet.txt', 'output_by_length.txt'")
+
+print("\n")
+
+# now, looking up the start row & column of the words.
+startRow= []
+startCol= []
+startDir= []
+
+for i in range(0,len(wordsFoundByLength)):
+	startRow.append(0)
+	startCol.append(0)
+	startDir.append(" ")
+
+# looking up the wordsearch in the direction Eastwards
+thisDir= "E"
+iterNo= -1
+for word in wordsFoundByLength:
+	iterNo = iterNo + 1
+	#print(word)
+	for iRow in range(0,nLines):
+		for iCol in range(0,(nCols-len(word))):
+			tempstr= strWordsearch[iRow][iCol:(len(word)+iCol)]
+			#print(tempstr)
+			#t=input()
+			if (word==tempstr):
+				startRow[iterNo]= iRow
+				startCol[iterNo]= iCol
+				startDir[iterNo]= thisDir
+				continue
+				# we probably should do this with the iRow loop as well. How?
+				
+# now Westwards with the reversed search.				
+thisDir= "W"
+iterNo= -1
+for word in wordsFoundByLength:
+	iterNo = iterNo + 1
+	#print(word)
+	for iRow in range(0,nLines):
+		for iCol in range(0,(nCols-len(word))):
+			tempstr= strWordsearchReversed[iRow][iCol:(len(word)+iCol)]
+			#print(tempstr)
+			#t=input()
+			if (word==tempstr):
+				startRow[iterNo]= iRow
+				startCol[iterNo]= iCol
+				startDir[iterNo]= thisDir
+				continue
+				# we probably should do this with the iRow loop as well. How?
+				
+# now Downwards with the transposed search.				
+thisDir= "S"
+iterNo= -1
+for word in wordsFoundByLength:
+	iterNo = iterNo + 1
+	#print(word)
+	for iRow in range(0,nLines):
+		for iCol in range(0,(nCols-len(word))):
+			tempstr= strWordsearchTrans[iRow][iCol:(len(word)+iCol)]
+			#print(tempstr)
+			#t=input()
+			if (word==tempstr):
+				startRow[iterNo]= iRow
+				startCol[iterNo]= iCol
+				startDir[iterNo]= thisDir
+				continue
+				# we probably should do this with the iRow loop as well. How?
+				
+# now Upwards with the reversed transposed search.				
+thisDir= "N"
+iterNo= -1
+for word in wordsFoundByLength:
+	iterNo = iterNo + 1
+	# print(word)
+	for iRow in range(0,nLines):
+		for iCol in range(0,(nCols-len(word))):
+			tempstr= strWordsearchTransposeReversed[iRow][iCol:(len(word)+iCol)]
+			#print(tempstr)
+			#t=input()
+			if (word==tempstr):
+				startRow[iterNo]= iRow
+				startCol[iterNo]= iCol
+				startDir[iterNo]= thisDir
+				continue
+				# we probably should do this with the iRow loop as well. How?
+
+#print(startRow)
+#print(startCol)
+#print(startDir)
+
+# write to file:
+f=open('output_by_length__Row.txt','w')
+for nInt in startRow:
+    f.write(str(nInt)+'\n')
+f.close()
+
+# write to file:
+f=open('output_by_length__Col.txt','w')
+for nInt in startCol:
+    f.write(str(nInt)+'\n')
+f.close()
+
+# write to file:
+f=open('output_by_length__Dir.txt','w')
+for word in startDir:
+    f.write(str(word)+'\n')
+f.close()
+
+print("\n")
+
+print("Wrote the starting row & column & direction of the words to file 'output_by_length__Row.txt', 'output_by_length__Col.txt', 'output_by_length__Dir.txt'")
+			
