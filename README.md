@@ -19,3 +19,5 @@ There was supposed to be 36 words. I got 15 in that list, along with 180 total. 
 
 Using the dictionary in json form from (blimey, this is fast!):
 https://github.com/dwyl/english-words
+
+.
